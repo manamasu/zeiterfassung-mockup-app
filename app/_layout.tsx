@@ -1,29 +1,27 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { EntriesProvider } from "@/hooks/EntriesContext";
+import { Slot } from "expo-router";
+import { DefaultTheme, PaperProvider } from "react-native-paper";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <PaperProvider theme={AppTheme}>
+      <EntriesProvider>
+        <Slot />
+      </EntriesProvider>
+    </PaperProvider>
   );
 }
+
+const AppTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "#fefefe", // Light, clean background
+    primary: "#1976d2", // Accent color
+    secondary: "#388e3c",
+    surface: "#ffffff",
+    text: "#111111", // Darker text for contrast
+    onSurface: "#111111",
+    placeholder: "#888",
+  },
+};

@@ -1,50 +1,119 @@
-# Welcome to your Expo app 👋
+# 📱 Mobile Zeiterfassung – React Native App (Mockup)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Diese App ist ein technisches Mockup für eine mobile Zeiterfassung, erstellt mit **React Native** und kann für den späteren Einsatz in einer produktionsreifen Umgebung erweitert werden.
 
-## Get started
+> 🎯 Ziel: Demonstration einer funktionalen App mit Start/Stopp-Zeiterfassung, Aktivitätenauswahl und lokaler Datenspeicherung – als Basis für spätere Integration in bestehende Systeme.
 
-1. Install dependencies
+---
+
+## Pflichtfunktionen
+
+### 🏷 Aktivitäten-Auswahl
+
+- Vordefinierte Liste von Aktivitäten:
+  - `Arbeit mit Klient`
+  - `Interne Planung`
+  - `Teammeeting`
+  - `Fortbildung`
+- Auswahl erfolgt über ein benutzerfreundliches **Dropdown-Menü**
+
+### ⏱ Start-/Stopp-Zeiterfassung
+
+- **Start-Button**: Beginnt die Zeiterfassung nach Auswahl einer Aktivität
+- **Stopp-Button**: Beendet die Zeiterfassung und speichert den Eintrag lokal
+- Manuelle Eingabe von **Start- und Endzeit** ist ebenfalls möglich (z. B. bei nachträglicher Erfassung)
+
+### 💾 Lokale Speicherung
+
+- Persistente Speicherung der Einträge via `AsyncStorage`
+- Änderungen wirken sich **direkt** auf die Anzeige aus
+- Kein Backend erforderlich – alles funktioniert offline
+
+---
+
+## 🛠 Tech Stack
+
+- [React Native](https://reactnative.dev/) um eine plattformübergreifende App (Android/IOS) zu erstellen.
+- [Expo](https://expo.dev/) für schnelles Testing & Deployment
+- [React Native Paper](https://callstack.github.io/react-native-paper/) – UI-Bibliothek basierend auf Material Design
+- [AsyncStorage](https://react-native-async-storage.github.io/async-storage/) – lokale Persistenz
+- [date-fns](https://date-fns.org/) – für Datum/Zeit-Formatierung
+- [react-native-modal-datetime-picker](https://www.npmjs.com/package/react-native-modal-datetime-picker) – komfortable Auswahl von Zeiten/Zeitpunkten
+
+---
+
+## 🚀 Get Started
+
+### 1. Voraussetzungen
+
+Bevor man die App testen kann, müssen folgende Tools installiert sein:
+
+- **[Node.js](https://nodejs.org/)** (empfohlen: LTS-Version)
+- **npm** (wird mit Node installiert)
+- **Expo Go App** für dein Smartphone:  
+  - [Android](https://play.google.com/store/apps/details?id=host.exp.exponent)  
+  - [iOS](https://apps.apple.com/app/expo-go/id982107779)
+
+> Mithilfe von Expo Go kann man das Projekt direkt auf dem Handy testen – ohne Emulator!
+
+#### Optional: Emulator/Simulator (nur bei Bedarf)
+
+- Android: [Android Studio installieren](https://developer.android.com/studio) → Emulator einrichten  
+- iOS (nur macOS): [Xcode installieren](https://developer.apple.com/xcode/) → iOS Simulator nutzen
+
+---
+
+### 2. Projekt starten
+
+1. Repository klonen:
+
+   ```bash
+   git clone <repo-url>
+   cd <projektordner>
+   ```
+
+2. Abhängigkeiten installieren:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. Projekt starten:
 
    ```bash
-   npx expo start
+   npm install
    ```
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🔐 Sicherheit & zukünftige Systemintegration (Konzept)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+In einer produktionsreifen Umgebung spielen verschiedene Themen eine zentrale Rolle – derzeit **nicht umgesetzt**, aber konzeptionell vorbereitet:
 
-## Get a fresh project
+- **Authentifizierung**  
+  Eine Umsetzung eines Login-Systems z. B. per OAuth2 / JWT mit rollenbasiertem Berechtigungssystem für unterschiedliche Nutzergruppen.
 
-When you're ready, run:
+- **Sichere Datenübertragung**  
+  Künftige Kommunikation mit einem Backend erfolgt ausschließlich über HTTPS. Sensible Nutzerdaten werden **nicht im Klartext gespeichert** (z. B. Token-Verschlüsselung, Hashing von Zugangsinformationen).
 
-```bash
-npm run reset-project
-```
+- **Lokale Datenspeicherung**  
+  Aktuell werden Einträge lokal über `AsyncStorage` verwaltet – für spätere Sicherheitserweiterungen kann dies durch `EncryptedStorage` oder `SecureStore` ersetzt werden (z. B. für Login-Tokens oder personenbezogene Daten).
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- **API & Datenbank-Anbindung**  
+  Die App ist vorbereitet für REST- oder GraphQL-APIs zur Synchronisation mit einer zentralen Datenbank.
 
-## Learn more
+- **DSGVO-Konformität & Architektur**  
+  Architektur mit Fokus auf Datentrennung (z. B. zwischen Nutzer- und Aktivitätsdaten), lokale Speicherung ohne personenbezogene Identifizierungsmerkmale der Aktivitäten.
 
-To learn more about developing your project with Expo, look at the following resources:
+> 💡 Die App verfolgt derzeit ein *Offline-First*-Konzept, ist aber technisch vorbereitet für spätere Cloud- oder Serverintegration mit sicherem Datentransport und Benutzerverwaltung.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+---
 
-## Join the community
+## ⚠️ Hinweis zur Nutzung / Urheberrecht
 
-Join our community of developers creating universal apps.
+Diese App wurde im Rahmen eines Lern- und Demonstrationszwecken erstellt.  
+Sie dient ausschließlich der Veranschaulichung technischer Fähigkeiten und ist **nicht für den produktiven Einsatz vorgesehen**.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+> Jegliche kommerzielle Nutzung, Weiterverbreitung oder produktive Integration dieser Software (ganz oder in Teilen) ohne meine ausdrückliche Zustimmung ist **nicht gestattet**.
+
+© manamasu – Alle Rechte vorbehalten.
