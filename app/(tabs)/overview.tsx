@@ -23,8 +23,11 @@ export default function OverviewScreen() {
 
   const now = new Date();
   const past = entries.filter((e) => new Date(e.end) < now);
-  // const futureAndToday = entries.filter((e) => new Date(e.end) >= now);
 
+  /**
+   * groupByDate gruppiert die entries formattiert bei ihrem startDate
+   * und returned Record of date -> array of entries
+   */
   const groupByDate = (entries: Entry[]) => {
     const grouped: Record<string, Entry[]> = {};
     for (const entry of entries) {
@@ -51,6 +54,11 @@ export default function OverviewScreen() {
     setSelectedEntry(null);
   };
 
+  /**
+   * Rendert hier eine collapsible list (Accordion) von entries gruppiert anhand des Datums
+   * @param title Title of the section (e.g, "Vergangene Einträge")
+   * @param data Array of entries to render
+   */
   const renderSection = (title: string, data: Entry[]) => {
     const grouped = groupByDate(data);
     const sortedDates = Object.keys(grouped).sort(
@@ -96,7 +104,6 @@ export default function OverviewScreen() {
   return (
     <View style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={{ paddingBottom: 32 }}>
-        {/* {renderSection("Aktuelle & Zukünftige Einträge", futureAndToday)} */}
         {renderSection("Vergangene Einträge", past)}
       </ScrollView>
 
