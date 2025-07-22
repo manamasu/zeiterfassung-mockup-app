@@ -6,6 +6,15 @@ Diese App ist ein technisches Mockup für eine mobile Zeiterfassung, erstellt mi
 
 ---
 
+## Screenshots
+
+<img src="screenshots/Initial_Screen_Zeitplaner.png" width="300" alt="initial_screen_zeitplanner"/>
+<img src="screenshots/Neuer_Eintrag_Modal.png" width="300" alt="neuer_eintrag_modal" />
+<img src="screenshots/Eintrag_Item_Ansicht.png" width="300" alt="eintrag_item_ansicht"/>
+<img src="screenshots/Overview_Screen_with_one_Entry.png" width="300" alt="overview_screen"/>
+
+---
+
 ## Pflichtfunktionen
 
 ### 🏷 Aktivitäten-Auswahl
