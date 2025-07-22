@@ -1,4 +1,5 @@
-import { Fontisto } from "@expo/vector-icons";
+import { formatTimeShort } from "@/utils/date";
+import { Fontisto, Octicons } from "@expo/vector-icons";
 import { format } from "date-fns";
 import { de } from "date-fns/locale";
 import { StyleSheet, View } from "react-native";
@@ -33,19 +34,21 @@ export default function EntryItem({
       {entries.map((entry, i) => (
         <View key={i} style={styles.entryContainer}>
           <View style={styles.row}>
-            <Badge
-              style={{
-                backgroundColor:
-                  Aktivitaeten_META[entry.activity]?.color || "#ccc",
-                color: "white",
-              }}
-            >
-              {entry.activity}
-            </Badge>
-            <Text>{`${format(new Date(entry.start), "HH:mm")} – ${format(
-              new Date(entry.end),
-              "HH:mm"
-            )}`}</Text>
+            <View style={styles.row}>
+              <Badge
+                style={{
+                  backgroundColor:
+                    Aktivitaeten_META[entry.activity]?.color || "#ccc",
+                  color: "white",
+                  fontSize: 12,
+                }}
+              >
+                {entry.activity}
+              </Badge>
+              <Text>{`${formatTimeShort(entry.start)} – ${formatTimeShort(
+                entry.end
+              )}`}</Text>
+            </View>
 
             <View style={styles.actions}>
               <IconButton
@@ -61,7 +64,11 @@ export default function EntryItem({
             </View>
           </View>
 
-          {entry.note ? <Text style={styles.note}>📝 {entry.note}</Text> : null}
+          {entry.note ? (
+            <Text style={styles.note}>
+              <Octicons name="note" size={20} color="black" /> {entry.note}
+            </Text>
+          ) : null}
 
           <Divider style={{ marginTop: 8 }} />
         </View>

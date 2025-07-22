@@ -2,7 +2,7 @@ import { Fontisto } from "@expo/vector-icons";
 import { addMonths, subMonths } from "date-fns";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Button, Text } from "react-native-paper";
+import { IconButton, Text } from "react-native-paper";
 import { formatDateToMonthYear } from "../../utils/date";
 
 export default function MonthHeader() {
@@ -10,19 +10,15 @@ export default function MonthHeader() {
 
   return (
     <View style={styles.headerContainer}>
-      <Button
+      <IconButton
         onPress={() => setDate(subMonths(date, 1))}
         icon={() => <Fontisto name="angle-left" size={24} color="black" />}
-      >
-        l
-      </Button>
-      <Text>{formatDateToMonthYear(date)}</Text>
-      <Button
+      />
+      <Text variant="titleMedium">{formatDateToMonthYear(date)}</Text>
+      <IconButton
         onPress={() => setDate(addMonths(date, 1))}
         icon={() => <Fontisto name="angle-right" size={24} color="black" />}
-      >
-        r
-      </Button>
+      />
     </View>
   );
 }

@@ -85,6 +85,10 @@ export default function EntryModal({
       note,
     };
 
+    {
+      /* TODO: Timer needs Validation logic, so startTime can never be bigger than endTime */
+    }
+
     onSave(newEntry); // Saving will be handled outside, then modal will be dismissed.
   };
 
@@ -108,14 +112,16 @@ export default function EntryModal({
                 </Button>
               </View>
 
-              <Dropdown
-                hideMenuHeader
-                label="Aktivität"
-                placeholder="Wähle Aktivität"
-                value={activity}
-                options={AKTIVITATEN_OPTIONS}
-                onSelect={(val) => setActivity(val as AktitvitaetType)}
-              />
+              {visible && (
+                <Dropdown
+                  hideMenuHeader
+                  label="Aktivität"
+                  placeholder="Wähle Aktivität"
+                  value={activity}
+                  options={AKTIVITATEN_OPTIONS}
+                  onSelect={(val) => setActivity(val as AktitvitaetType)}
+                />
+              )}
 
               <Divider style={{ marginVertical: 16 }} />
 

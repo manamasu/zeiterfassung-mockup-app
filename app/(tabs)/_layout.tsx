@@ -5,6 +5,7 @@ export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={({ route }) => ({
+        lazy: false,
         tabBarIcon: ({ color, size }) => {
           let icon: keyof typeof MaterialCommunityIcons.glyphMap;
           if (route.name === "overview") {
